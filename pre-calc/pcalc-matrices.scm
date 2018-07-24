@@ -4,20 +4,19 @@
 ;; it takes a list (a row from a matrix)
 ;; operates term thru the row term({ a₁  aₙ})
 ;; outputs results in a new list.
-(define (row-op term mat)
-	(if (null? mat) ()
-	    (cons (term (car mat))
-	          (row-op term (cdr mat)))))
+(define (row-op term row)
+	(if (null? row) ()
+	    (cons (term (car row))
+	          (row-op term (cdr row)))))
 
 
 ;; It goes thru each element of two rows (lists)
 ;; operates them; it outputs the results
 ;; in a new row (list)
-(define (rows-op term mat1 mat2)
-	(if (null? (and mat1 mat2)) () 
-	    (cons (term (car mat1)
-	                (car mat2))
+(define (rows-op term row1 row2)
+	(if (null? (and row1 row2)) () 
+	    (cons (term (car row1)
+	                (car row2))
 		  (rows-op term
-			   (cdr mat1)
-			   (cdr mat2)))))
-						          
+			   (cdr row1)
+			   (cdr row2)))))						          
